@@ -8,7 +8,7 @@ using LabProject.Model;
 internal class EntryPoint : Plugin
 {
     public override string Name => "LabProject";
-    public override string Description => "SeeNoEvil Reborn.";
+    public override string Description => "A reimplementation of a plugin I once wrote.";
     public override string Author => "EasyT_T";
     public override Version Version { get; } = new Version(0, 1, 0);
     public override Version RequiredApiVersion { get; } = new Version(0, 7, 0);
