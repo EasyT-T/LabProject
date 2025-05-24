@@ -3,7 +3,6 @@
 using System;
 using System.IO;
 using System.Text;
-using LabProject.Enum;
 using LabProject.Model;
 
 public class FileLogger : StandardLogger

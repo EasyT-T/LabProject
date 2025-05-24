@@ -1,7 +1,5 @@
 ﻿namespace LabProject.Logging;
 
-using LabProject.Enum;
-
 public class WrappedLogger(params ILogger[] loggers) : ILogger
 {
     public void Log(string message, LogLevel level)

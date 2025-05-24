@@ -1,7 +1,6 @@
 ﻿namespace LabProject.Logging;
 
 using System;
-using LabProject.Enum;
 
 public class ConsoleLogger(string name) : StandardLogger
 {

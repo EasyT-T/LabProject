@@ -15,35 +15,41 @@
         <LangVersion>12</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+      <DebugType>none</DebugType>
+      <Optimize>true</Optimize>
+      <DefineConstants>TRACE</DefineConstants>
+      <ErrorReport>prompt</ErrorReport>
+      <WarningLevel>4</WarningLevel>
+      <OutputPath>bin\x64\Release\</OutputPath>
         <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
         <DebugSymbols>true</DebugSymbols>
         <DebugType>embedded</DebugType>
         <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+      <OutputPath>bin\x64\Debug\</OutputPath>
         <PlatformTarget>x64</PlatformTarget>
-        <DebugType>none</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+      <Compile Include="Command\BotCommand.cs" />
       <Compile Include="EntryPoint.cs" />
-      <Compile Include="Enum\LogLevel.cs" />
+      <Compile Include="Extension\LoggerExtensions.cs" />
+      <Compile Include="Extension\MirrorExtensions.cs" />
       <Compile Include="Logging\ConsoleLogger.cs" />
       <Compile Include="Logging\FileLogger.cs" />
       <Compile Include="Logging\ILogger.cs" />
+      <Compile Include="Logging\ILoggerProvider.cs" />
       <Compile Include="Logging\LoggerFactory.cs" />
+      <Compile Include="Logging\LogLevel.cs" />
       <Compile Include="Logging\WrappedLogger.cs" />
       <Compile Include="Logging\StandardLogger.cs" />
+      <Compile Include="Model\Bot.cs" />
       <Compile Include="Model\LabProject.cs" />
+      <Compile Include="Network\BotConnection.cs" />
     </ItemGroup>
     <ItemGroup>
       <Reference Include="Assembly-CSharp">
@@ -54,8 +60,12 @@
         <HintPath>$(SL_REFERENCES)\Assembly-CSharp-firstpass.dll</HintPath>
         <Private>False</Private>
       </Reference>
-      <Reference Include="LabApi">
-        <HintPath>$(SL_REFERENCES)\LabApi.dll</HintPath>
+      <Reference Include="CommandSystem.Core">
+        <HintPath>$(SL_REFERENCES)\CommandSystem.Core.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="LabApi, Version=1.0.2.0, Culture=neutral, processorArchitecture=Amd64">
+        <HintPath>..\packages\Northwood.LabAPI.1.0.2\lib\net48\LabApi.dll</HintPath>
         <Private>False</Private>
       </Reference>
       <Reference Include="Mirror">
@@ -78,6 +88,13 @@
         <HintPath>$(SL_REFERENCES)\UnityEngine.Physics2DModule.dll</HintPath>
         <Private>False</Private>
       </Reference>
+      <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+        <HintPath>..\packages\YamlDotNet.11.0.1\lib\net45\YamlDotNet.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

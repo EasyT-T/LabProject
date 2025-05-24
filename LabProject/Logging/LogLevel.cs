@@ -1,4 +1,4 @@
-﻿namespace LabProject.Enum;
+﻿namespace LabProject.Logging;
 
 public enum LogLevel
 {

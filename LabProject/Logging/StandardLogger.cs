@@ -1,7 +1,6 @@
 ﻿namespace LabProject.Logging;
 
 using System.Text;
-using LabProject.Enum;
 using NorthwoodLib.Pools;
 
 public abstract class StandardLogger : ILogger

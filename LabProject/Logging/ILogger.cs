@@ -1,7 +1,5 @@
 ﻿namespace LabProject.Logging;
 
-using LabProject.Enum;
-
 public interface ILogger
 {
     void Log(string message, LogLevel level);
