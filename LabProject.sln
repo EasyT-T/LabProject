@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabProject", "LabProject\LabProject.csproj", "{75C7B323-0224-46D5-B77D-63AA1924181D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabProject.Example", "LabProject.Example\LabProject.Example.csproj", "{87876AEF-5550-4E90-A413-8A4EB2326785}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -12,5 +14,9 @@ Global
 		{75C7B323-0224-46D5-B77D-63AA1924181D}.Release|x64.Build.0 = Release|x64
 		{75C7B323-0224-46D5-B77D-63AA1924181D}.Debug|x64.ActiveCfg = Debug|x64
 		{75C7B323-0224-46D5-B77D-63AA1924181D}.Debug|x64.Build.0 = Debug|x64
+		{87876AEF-5550-4E90-A413-8A4EB2326785}.Debug|x64.ActiveCfg = Debug|x64
+		{87876AEF-5550-4E90-A413-8A4EB2326785}.Debug|x64.Build.0 = Debug|x64
+		{87876AEF-5550-4E90-A413-8A4EB2326785}.Release|x64.ActiveCfg = Release|x64
+		{87876AEF-5550-4E90-A413-8A4EB2326785}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal

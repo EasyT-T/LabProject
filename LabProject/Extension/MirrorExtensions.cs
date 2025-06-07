@@ -32,22 +32,12 @@ public static class MirrorExtensions
     private static readonly PropertyInfo? ConnectionToClientProperty =
         typeof(NetworkIdentity).GetProperty(ConnectionToClientPropertyName, BindingFlags.Public | BindingFlags.Instance);
 
-    public static void SpawnObjectToConnection(this NetworkConnectionToClient connectionToClient,
-        NetworkIdentity identity, NetworkConnectionToClient owner)
+    public static void CreateObjectToServer(this NetworkIdentity identity, NetworkConnectionToClient connectionToClient)
     {
-        var netId = GetNextNetworkId();
-        identity.SetConnectionToClient(owner);
-        identity.SetNetId(netId);
-        connectionToClient.AddToObserving(identity);
-        identity.observers.Add(connectionToClient.connectionId, connectionToClient);
-    }
+        identity.SetConnectionToClient(connectionToClient);
 
-    public static void DespawnObjectToConnection(this NetworkConnectionToClient connectionToClient,
-        NetworkIdentity identity)
-    {
-        connectionToClient.Send(new ObjectDestroyMessage { netId = identity.netId });
-        connectionToClient.RemoveFromObserving(identity, true);
-        identity.observers.Remove(connectionToClient.connectionId);
+        var netId = GetNextNetworkId();
+        identity.SetNetId(netId);
     }
 
     public static void DestroyObjectFromServer(this NetworkIdentity identity)
@@ -60,15 +50,31 @@ public static class MirrorExtensions
         }
 
         identity.observers.Clear();
+        identity.SetConnectionToClient(null);
 
         Object.Destroy(identity.gameObject);
+    }
+
+    public static void SpawnObjectToConnection(this NetworkConnectionToClient connectionToClient,
+        NetworkIdentity identity)
+    {
+        connectionToClient.AddToObserving(identity);
+        identity.observers.Add(connectionToClient.connectionId, connectionToClient);
+    }
+
+    public static void DespawnObjectToConnection(this NetworkConnectionToClient connectionToClient,
+        NetworkIdentity identity)
+    {
+        connectionToClient.Send(new ObjectDestroyMessage { netId = identity.netId });
+        connectionToClient.RemoveFromObserving(identity, true);
+        identity.observers.Remove(connectionToClient.connectionId);
     }
 
     internal static uint GetNextNetworkId()
     {
         if (GetNextNetworkIdMethod == null)
         {
-            throw new MissingMethodException("Unable to get GetNextNetworkId method from NetworkIdentify.");
+            throw new MissingMethodException("Unable to get GetNextNetworkId method from NetworkIdentity.");
         }
 
         return (uint)GetNextNetworkIdMethod.Invoke(null, null);
@@ -110,18 +116,18 @@ public static class MirrorExtensions
     {
         if (NetIdProperty == null)
         {
-            throw new MissingMethodException("Unable to get netId property from NetworkIdentify.");
+            throw new MissingMethodException("Unable to get netId property from NetworkIdentity.");
         }
 
         NetIdProperty.SetValue(identity, netId);
     }
 
     internal static void SetConnectionToClient(this NetworkIdentity identity,
-        NetworkConnectionToClient connectionToClient)
+        NetworkConnectionToClient? connectionToClient)
     {
         if (ConnectionToClientProperty == null)
         {
-            throw new MissingMethodException("Unable to get connectionToClient property from NetworkIdentify.");
+            throw new MissingMethodException("Unable to get connectionToClient property from NetworkIdentity.");
         }
 
         ConnectionToClientProperty.SetValue(identity, connectionToClient);
