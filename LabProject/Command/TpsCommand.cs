@@ -14,7 +14,7 @@ public class TpsCommand : ICommand
 
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, [UnscopedRef] out string response)
     {
-        response = $"TPS: ${Server.Tps} / {Server.MaxTps}";
+        response = $"TPS: {Server.Tps} / {Server.MaxTps}";
         return true;
     }
 }
