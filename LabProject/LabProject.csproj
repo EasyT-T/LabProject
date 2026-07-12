@@ -1,0 +1,88 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <LangVersion>14</LangVersion>
+        <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+        <NoWarn>NU1701</NoWarn>
+        <Configurations>Release;Debug</Configurations>
+        <Platforms>x64</Platforms>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="LabProject.csproj.user" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(AssembliesPath)Assembly-CSharp-Publicized.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+            <HintPath>$(AssembliesPath)Assembly-CSharp-firstpass.dll</HintPath>
+        </Reference>
+        <Reference Include="CommandSystem.Core">
+            <HintPath>$(AssembliesPath)CommandSystem.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Mirror">
+            <HintPath>$(AssembliesPath)Mirror.dll</HintPath>
+        </Reference>
+        <Reference Include="Mirror.Components">
+            <HintPath>$(AssembliesPath)Mirror.Components.dll</HintPath>
+        </Reference>
+        <Reference Include="mscorlib">
+            <HintPath>$(AssembliesPath)mscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="netstandard">
+            <HintPath>$(AssembliesPath)netstandard.dll</HintPath>
+        </Reference>
+        <Reference Include="NorthwoodLib">
+            <HintPath>$(AssembliesPath)NorthwoodLib.dll</HintPath>
+        </Reference>
+        <Reference Include="System">
+            <HintPath>$(AssembliesPath)System.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Core">
+            <HintPath>$(AssembliesPath)System.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Memory">
+            <HintPath>$(AssembliesPath)System.Memory.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime">
+            <HintPath>$(AssembliesPath)System.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="UniTask">
+            <HintPath>..\_References\UniTask.dll</HintPath>
+        </Reference>
+        <Reference Include="UniTask.DOTween">
+            <HintPath>..\_References\UniTask.DOTween.dll</HintPath>
+        </Reference>
+        <Reference Include="UniTask.Linq">
+            <HintPath>..\_References\UniTask.Linq.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(AssembliesPath)UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule">
+            <HintPath>$(AssembliesPath)UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Northwood.LabAPI" Version="1.1.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LabProject.Audio\LabProject.Audio.csproj" />
+      <ProjectReference Include="..\LabProject.Loader\LabProject.Loader.csproj" />
+      <ProjectReference Include="..\LabProject.Shared\LabProject.Shared.csproj" />
+      <ProjectReference Include="..\LabProject.SourceGenerator\LabProject.SourceGenerator\LabProject.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+
+    <Target Name="CopyFileAfterBuild" AfterTargets="AfterBuild">
+        <Copy
+                SourceFiles="$(TargetDir)LabProject.dll"
+                DestinationFolder="$(CopyPath)"
+                SkipUnchangedFiles="false" />
+    </Target>
+</Project>

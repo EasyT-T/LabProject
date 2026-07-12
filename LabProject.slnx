@@ -1,0 +1,20 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/LabProject.SourceGenerator/">
+    <Project Path="LabProject.SourceGenerator/LabProject.SourceGenerator.Sample/LabProject.SourceGenerator.Sample.csproj" />
+    <Project Path="LabProject.SourceGenerator/LabProject.SourceGenerator/LabProject.SourceGenerator.csproj" />
+  </Folder>
+  <Project Path="LabProject.Audio/LabProject.Audio.csproj" />
+  <Project Path="LabProject.Loader/LabProject.Loader.csproj">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="LabProject.Shared/LabProject.Shared.csproj" />
+  <Project Path="LabProject.Vmf/LabProject.Vmf.csproj">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="LabProject/LabProject.csproj">
+    <Platform Project="x64" />
+  </Project>
+</Solution>
